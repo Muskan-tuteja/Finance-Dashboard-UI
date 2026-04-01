@@ -1,16 +1,40 @@
 import { useState } from "react";
 
-const Transactions = () => {
+const Transactions = ({ role }) => {
+   const [showForm, setShowForm] = useState(false);
+  const [amount, setAmount] = useState("");
+  const [category, setCategory] = useState("");
+  const [type, setType] = useState("expense");
+
   const [search, setSearch] = useState("");
   const [filter, setFilter] = useState("all");
 
-  const data = [
-    { id: 1, date: "1 Apr", amount: 500, category: "Food", type: "expense" },
-    { id: 2, date: "2 Apr", amount: 2000, category: "Salary", type: "income" },
-    { id: 3, date: "3 Apr", amount: 1000, category: "Shopping", type: "expense" },
-  ];
 
-  const filteredData = data.filter((item) => {
+  const [transactions, setTransactions] = useState([
+  { id: 1, date: "1 Apr", amount: 500, category: "Food", type: "expense" },
+  { id: 2, date: "2 Apr", amount: 2000, category: "Salary", type: "income" },
+  { id: 3, date: "3 Apr", amount: 1000, category: "Shopping", type: "expense" },
+]);
+
+const handleAdd = () => {
+  const newTransaction = {
+    id: transactions.length + 1,
+    date: "Today",
+    amount: Number(amount),
+    category: category,
+    type: type,
+  };
+
+  setTransactions([...transactions, newTransaction]);
+
+  // reset form
+  setAmount("");
+  setCategory("");
+  setType("expense");
+  setShowForm(false);
+};
+
+  const filteredData = transactions.filter((item) => {
     return (
       item.category.toLowerCase().includes(search.toLowerCase()) &&
       (filter === "all" || item.type === filter)
@@ -20,6 +44,46 @@ const Transactions = () => {
   return (
     <div className="p-4">
       <h2 className="text-xl font-bold mb-4">Transactions</h2>
+      {role === "admin" && (
+ <button
+  onClick={() => setShowForm(!showForm)}
+  className="bg-blue-500 text-white px-4 py-2 rounded mb-4"
+>
+  Add Transaction
+</button>
+)}
+{showForm && (
+  <div className="bg-white p-4 mb-4 rounded shadow">
+    <input
+      type="number"
+      placeholder="Amount"
+      className="border p-2 mr-2"
+      onChange={(e) => setAmount(e.target.value)}
+    />
+
+    <input
+      type="text"
+      placeholder="Category"
+      className="border p-2 mr-2"
+      onChange={(e) => setCategory(e.target.value)}
+    />
+
+    <select
+      className="border p-2 mr-2"
+      onChange={(e) => setType(e.target.value)}
+    >
+      <option value="expense">Expense</option>
+      <option value="income">Income</option>
+    </select>
+
+    <button
+  onClick={handleAdd}
+  className="bg-green-500 text-white px-3 py-2 rounded"
+>
+  Add
+</button>
+  </div>
+)}
 
       {/* Search + Filter */}
       <div className="flex gap-4 mb-4">
