@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-const Transactions = ({ role }) => {
+const Transactions = ({ role, transactions, setTransactions }) => {
    const [showForm, setShowForm] = useState(false);
   const [amount, setAmount] = useState("");
   const [category, setCategory] = useState("");
@@ -10,11 +10,7 @@ const Transactions = ({ role }) => {
   const [filter, setFilter] = useState("all");
 
 
-  const [transactions, setTransactions] = useState([
-  { id: 1, date: "1 Apr", amount: 500, category: "Food", type: "expense" },
-  { id: 2, date: "2 Apr", amount: 2000, category: "Salary", type: "income" },
-  { id: 3, date: "3 Apr", amount: 1000, category: "Shopping", type: "expense" },
-]);
+  
 
 const handleAdd = () => {
   const newTransaction = {
