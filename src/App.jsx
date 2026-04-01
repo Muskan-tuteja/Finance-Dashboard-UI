@@ -1,6 +1,7 @@
 import Navbar from "./components/Navbar";
 import SummaryCards from "./components/SummaryCards";
 import Charts from "./components/Charts";
+import Transactions from "./components/Transactions";
 
 function App() {
   return (
@@ -8,6 +9,7 @@ function App() {
       <Navbar />
       <SummaryCards />
          <Charts />
+          <Transactions />
     </div>
   );
 }
