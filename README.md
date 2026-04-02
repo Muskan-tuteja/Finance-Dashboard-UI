@@ -30,6 +30,9 @@ This project allows users to track financial data, analyze spending patterns, an
 * View all transactions
 * Search by category
 * Filter by Income / Expense
+* Add new transactions
+* ✏️ Edit existing transactions (Admin only)
+* 🔄 Real-time UI updates
 
 ### 🔐 Role-Based UI
 

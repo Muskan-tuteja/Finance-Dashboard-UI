@@ -19,7 +19,7 @@ const Charts = () => {
   return (
     <div className="p-4 grid md:grid-cols-2 gap-6">
       
-      {/* Line Chart */}
+      
       <div className="bg-white p-4 rounded-xl shadow-lg hover:scale-105 transition duration-300">
         <h2 className="mb-2 font-bold">Balance Trend</h2>
         <LineChart width={300} height={200} data={data}>

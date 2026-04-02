@@ -27,7 +27,7 @@ const Insights = ({ transactions }) => {
 
         {highestCategory ? (
           <p>
-            💡 Highest spending category: <b>{highestCategory}</b> (₹{maxAmount})
+             Highest spending category: <b>{highestCategory}</b> (₹{maxAmount})
           </p>
         ) : (
           <p>No insights available</p>
