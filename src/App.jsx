@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect,useState } from "react";
 import Navbar from "./components/Navbar";
 import SummaryCards from "./components/SummaryCards";
 import Charts from "./components/Charts";
@@ -10,10 +10,16 @@ import Insights from "./components/Insights";
 function App() {
   const [role, setRole] = useState("viewer");
 
-  const [transactions, setTransactions] = useState([
-  { id: 1, date: "1 Apr", amount: 500, category: "Food", type: "expense" },
-  { id: 2, date: "2 Apr", amount: 2000, category: "Salary", type: "income" },
-]);
+ const [transactions, setTransactions] = useState(() => {
+  const savedData = localStorage.getItem("transactions");
+  return savedData ? JSON.parse(savedData) : [
+    { id: 1, date: "1 Apr", amount: 500, category: "Food", type: "expense" },
+    { id: 2, date: "2 Apr", amount: 2000, category: "Salary", type: "income" },
+  ];
+});
+useEffect(() => {
+    localStorage.setItem("transactions", JSON.stringify(transactions));
+  }, [transactions]);
 
   return (
     <div className="bg-gray-100 min-h-screen">

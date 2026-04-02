@@ -98,6 +98,15 @@ const handleAdd = () => {
           <option value="income">Income</option>
           <option value="expense">Expense</option>
         </select>
+        <button
+  onClick={() => {
+    localStorage.removeItem("transactions");
+    setTransactions([]); // UI bhi clear
+  }}
+  className="bg-red-500 text-white px-3 py-2 rounded"
+>
+  Clear Data
+</button>
       </div>
 
       {/* Table */}
