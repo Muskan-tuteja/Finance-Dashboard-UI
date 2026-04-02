@@ -22,7 +22,7 @@ const Insights = ({ transactions }) => {
 
   return (
     <div className="p-4">
-      <div className="bg-white p-4 rounded shadow">
+      <div className="bg-white p-4 rounded-xl shadow-lg hover:scale-105 transition duration-300">
         <h2 className="text-xl font-bold mb-2">Insights</h2>
 
         {highestCategory ? (
